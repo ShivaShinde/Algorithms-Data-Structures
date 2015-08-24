@@ -65,6 +65,7 @@ public class SelectionSort {
 		SelectionSort obj = new SelectionSort();
 		obj.selection();
 		obj.display();
+		SelectionSort fun = new SelectionSort();
 		
 	}
 
