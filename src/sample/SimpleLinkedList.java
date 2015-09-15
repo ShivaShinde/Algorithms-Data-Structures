@@ -53,6 +53,11 @@ class Link
 		}
 	}
 	
+	void display()
+	{
+		System.out.println("This is updated");
+	}
+	
 	
 	
 }
