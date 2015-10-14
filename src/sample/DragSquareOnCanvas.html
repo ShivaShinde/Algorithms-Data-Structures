@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<title>Drag a square on canvas</title>
+<head>
+</head>
+<body>
+<div>
+<canvas id="myCanvas" width="300" height="300" style="border:1px solid #000000;"></canvas>
+</div>
+
+
+<script>
+var a=75;
+var b=50;
+var moveok = false;
+var c;
+var ctx;
+var WIDTH = 100;
+var HEIGHT = 100;
+
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.fillStyle = "#000000";
+ctx.fillRect(25, 25, 40, 40);
+
+function makeRect(a, b, WIDTH, HEIGHT)
+{
+ctx.beginPath();
+ctx.makeRect(a, b, WIDTH, HEIGHT);
+ctx.closePath();
+ctx.fill();
+}
+
+function clear()
+{
+ctx.clearRect(0, 0, WIDTH, HEIGHT);
+}
+
+
+function begin()
+{
+c=document.getElementById("myCanvas");
+ctx=c.getContext("2d");
+return setInterval(draw, 10);
+}
+
+function make()
+{
+clean();
+ctx.fillStyle = "#000000";
+makeRect(0, 0, WIDTH, HEIGHT);
+ctx.fillStyle = "#FFFFFF";
+rect(a-15, b-15, WIDTH, HEIGHT);
+}
+
+function drag(e)
+{
+if(moveok)
+{
+a = e.pageX-c.offsetLeft;
+b = e.pageY-c.offsetTop;
+}
+}
+
+function drop()
+{
+if(e.pageX<x+15 + c.offsetLeft && e.pageX > x-15 + c.offsetLeft && e.pageY < y+15 + c.offsetTop && 
+e.pageY > y-15 + c.offsetTop)
+{
+x=e.pageX - c.offsetLeft;
+y=e.pageY - c.offsetTop;
+moveok = true;
+c.onmousemove = drag;
+}
+
+}
+
+function myMouseUp()
+{
+moveok = false;
+c.onmousemove = null;
+}
+
+begin();
+c.onmousedown = drop;
+c.onmouseup = myMouseUp;
+
+
+</script>
+
+</body>
+
+</html>
